@@ -1,68 +1,102 @@
-/* styles.css */
-
-/* Tổng thể ứng dụng */
+/* Tổng thể trang */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #d7eafc, #b4d4f7); /* Màu xanh nhạt dịu mắt */
+  margin: 0;
+  padding: 0;
+}
+
+/* Container chính */
+div {
+  width: 80%;
+  margin: 20px auto;
+  background: #ffffff; /* Màu trắng để nổi bật nội dung */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+/* Form nhập tài khoản */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f8ff; /* Màu xanh nhạt */
+}
+
+button {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #e63946;
+}
+
+/* Danh sách tài khoản */
+.account-list {
+  list-style: none;
+  padding: 0;
+}
+
+.account-item {
+  background: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.account-item:hover {
+  transform: scale(1.02);
+}
+
+.account-item strong {
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+.account-item span.amount {
+  font-weight: bold;
+  color: #27ae60;
+  font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  div {
+    width: 95%;
   }
-  
-  /* Khung ứng dụng */
-  .container {
-    width: 400px;
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+
+  input {
+    width: 100%;
   }
-  
-  /* Tiêu đề */
-  h1, h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Danh sách tài khoản */
-  .account-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .account-list li {
-    background: #fff;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  /* Form thêm tài khoản */
+
   form {
-    display: flex;
     flex-direction: column;
   }
-  
-  input {
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #218838;
-  }
+}

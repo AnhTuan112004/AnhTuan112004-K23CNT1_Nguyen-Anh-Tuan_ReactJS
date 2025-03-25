@@ -1,66 +1,94 @@
-// src/components/NatAccountAdd.js
-
 import React, { useState } from "react";
 
 function NatAccountAdd({ onAdd }) {
-  const [nat_name, setNat_Name] = useState("");  // Tên tài khoản
-  const [nat_email, setNat_Email] = useState("");  // Email tài khoản
-  const [nat_amount, setNat_Amount] = useState("");  // Số tiền trong tài khoản
+  const [nat_name, setNat_Name] = useState("");  // Name
+  const [nat_email, setNat_Email] = useState("");  // Email
+  const [nat_amount, setNat_Amount] = useState("");  // Amount
+  const [error, setError] = useState("");  // Error message
 
-  // Hàm này xử lý khi người dùng submit form
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Kiểm tra các trường nhập liệu xem có bị trống không
+    // Reset error message
+    setError("");
+
+    // Validate required fields
     if (!nat_name || !nat_email || !nat_amount) {
-      console.error("All fields are required!");  // In ra lỗi nếu có trường bị trống
+      setError("All fields are required!");  // Display error message
       return;
     }
 
-    // Tạo một đối tượng tài khoản mới từ các giá trị đã nhập
+    // Check if amount is a valid number
+    if (isNaN(nat_amount) || parseFloat(nat_amount) <= 0) {
+      setError("Please enter a valid amount.");
+      return;
+    }
+
+    // Create new account object
     const newAccount = {
-      nat_id: Date.now(),  // Sử dụng thời gian hiện tại để tạo id duy nhất
+      nat_id: Date.now(),
       nat_name,
       nat_email,
-      nat_amount: parseFloat(nat_amount),  // Chuyển đổi số tiền thành số thực
+      nat_amount: parseFloat(nat_amount),  // Convert amount to float
     };
 
-    // Kiểm tra xem onAdd có phải là hàm hay không
+    // Call onAdd function if provided
     if (typeof onAdd === "function") {
-      onAdd(newAccount);  // Gọi hàm onAdd để thêm tài khoản mới
+      onAdd(newAccount);
     } else {
       console.error("onAdd is not a function");
     }
 
-    // Reset lại form sau khi thêm tài khoản
+    // Reset form fields after submission
     setNat_Name("");
     setNat_Email("");
     setNat_Amount("");
   };
 
   return (
-    <div>
-      <h2>Add New Account</h2>
+    <div className="container mt-5">
+      <h2 className="mb-4">Add New Account</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={nat_name}
-          onChange={(e) => setNat_Name(e.target.value)}  // Cập nhật tên tài khoản
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={nat_email}
-          onChange={(e) => setNat_Email(e.target.value)}  // Cập nhật email tài khoản
-        />
-        <input
-          type="number"
-          placeholder="Amount"
-          value={nat_amount}
-          onChange={(e) => setNat_Amount(e.target.value)}  // Cập nhật số tiền tài khoản
-        />
-        <button type="submit">Add Account</button>  {/* Nút submit form */}
+        {error && <div className="alert alert-danger" role="alert">{error}</div>}  {/* Display error message */}
+        
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            className="form-control"
+            placeholder="Enter Name"
+            value={nat_name}
+            onChange={(e) => setNat_Name(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            className="form-control"
+            placeholder="Enter Email"
+            value={nat_email}
+            onChange={(e) => setNat_Email(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="amount" className="form-label">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            className="form-control"
+            placeholder="Enter Amount"
+            value={nat_amount}
+            onChange={(e) => setNat_Amount(e.target.value)}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">Add Account</button>
       </form>
     </div>
   );

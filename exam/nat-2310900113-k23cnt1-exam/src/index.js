@@ -4,8 +4,8 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import NatApp from './NatApp';
 
-const Natroot = ReactDOM.createRoot(document.getElementById('Natroot'));
-Natroot.render(
+const natRoot = ReactDOM.createRoot(document.getElementById('natRoot'));
+natRoot.render(
   <React.StrictMode>
     <NatApp />
   </React.StrictMode>
