@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NatAccountAdd from "./components/NatAccountAdd";
 import NatAccountList from "./components/NatAccountList";
 import "./styles.css"; // Import file CSS vào ứng dụng
+import ParentComponent from "./components/ParentComponent";
 
 function NatApp() {
   const [nat_Accounts, setNat_Accounts] = useState([
@@ -19,6 +20,7 @@ function NatApp() {
       <h1>Nat Account Management</h1>
       <NatAccountAdd addAccount={addAccount}/>
       <NatAccountList accounts={nat_Accounts} />
+      <ParentComponent/>
     </div>
   );
 }
